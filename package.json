@@ -17,7 +17,8 @@
   "homepage": "https://github.com/yoojm4718/wetube-reloaded#readme",
   "dependencies": {
     "@babel/node": "^7.14.7",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
