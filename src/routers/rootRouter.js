@@ -8,7 +8,7 @@ import {
   postGHJoin,
 } from "../controllers/userController";
 import { home, search } from "../controllers/videoController";
-import { publicOnlyMiddleWare, uploadFiles } from "../middlewares";
+import { publicOnlyMiddleWare, avatarUpload } from "../middlewares";
 
 const rootRouter = express.Router();
 
@@ -17,12 +17,12 @@ rootRouter
   .route("/join")
   .all(publicOnlyMiddleWare)
   .get(getJoin)
-  .post(uploadFiles.single("avatar"), postJoin);
+  .post(avatarUpload.single("avatar"), postJoin);
 rootRouter
   .route("/join/github")
   .all(publicOnlyMiddleWare)
   .get(getGHJoin)
-  .post(uploadFiles.single("avatar"), postGHJoin);
+  .post(avatarUpload.single("avatar"), postGHJoin);
 rootRouter
   .route("/login")
   .all(publicOnlyMiddleWare)
