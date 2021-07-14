@@ -1,10 +1,17 @@
-extends base.pug
+extends base
 include mixins/video
 
 block content
     video(src="/" + video.fileUrl, controls, width="300px")
     div
-        +video(video)
-    a(href=`${video.id}/edit`) Edit Video &rarr;
+        p=video.description
+        small=video.createdAt
+    div 
+        small Uploaded by 
+            a(href=`/users/${video.owner._id}`)=video.owner.name
     br
-    a(href=`${video.id}/delete`) Delete Video &rarr;
+    if loggedInUser
+        if String(video.owner._id) === String(loggedInUser._id)
+            a(href=`${video.id}/edit`) Edit Video &rarr;
+            br
+            a(href=`${video.id}/delete`) Delete Video &rarr;

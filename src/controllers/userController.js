@@ -286,4 +286,12 @@ export const postEditPassword = async (req, res) => {
   return res.redirect("/");
 };
 
-export const profile = (req, res) => res.send("Profile");
+export const profile = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id).populate("videos");
+
+  if (!user) {
+    return res.status(404).render("404", { pageTitle: "User Not Found" });
+  }
+  return res.render("profile", { pageTitle: `${user.name} Profile`, user });
+};

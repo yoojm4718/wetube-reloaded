@@ -20,7 +20,7 @@ html(lang="ko")
                         li 
                             a(href="/users/logout") Logout
                         li 
-                            a(href="/profile") #{loggedInUser.name}
+                            a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name}
                     li
                         a(href="/search") Search
                     li
