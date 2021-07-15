@@ -1,0 +1,41 @@
+.header {
+  padding: 5px 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header_home {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  justify-items: center;
+  align-items: center;
+  gap: 7px;
+}
+
+.header_home i {
+  justify-self: end;
+  align-self: center;
+}
+
+.header_home h1 {
+  font-size: 25px;
+  justify-self: start;
+  align-self: center;
+}
+
+.header_list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(auto-fit, max-content);
+  justify-items: center;
+  align-items: center;
+  grid-column-start: 3;
+  gap: 10px;
+  li {
+    font-size: 20px;
+  }
+}
