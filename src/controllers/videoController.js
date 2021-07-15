@@ -1,10 +1,13 @@
 import Video from "../models/Video";
 import User from "../models/User";
+import fs from "fs";
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({}).sort({ createdAt: "desc" });
-    return res.render("home", { pageTitle: "Home", videos });
+    const videos = await Video.find({})
+      .populate("owner")
+      .sort({ createdAt: "desc" });
+    return res.render("home", { pageTitle: "Home", videos, fs });
   } catch {
     return res.render("server-error");
   }

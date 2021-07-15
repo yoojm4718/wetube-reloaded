@@ -1,6 +1,7 @@
 import User from "../models/User";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
+import fs from "fs";
 
 export const getJoin = (req, res) => {
   return res.render("join", { pageTitle: "Create Account" });
@@ -212,7 +213,6 @@ export const logout = (req, res) => {
 };
 
 export const getEdit = (req, res) => {
-  const fs = require("fs");
   let doesFileExist = true;
   if (!fs.existsSync(req.session.user.avatar)) {
     doesFileExist = false;
