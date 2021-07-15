@@ -6,13 +6,14 @@
 // Components
 @import "./components/_header.scss";
 @import "./components/_footer.scss";
+@import "./components/_form.scss";
+@import "./components/_video.scss";
 
 // Screens
 @import "./screens/_home.scss";
-@import "./screens/_join.scss";
+@import "./screens/_search.scss";
 
 // Defaults
-
 * {
   box-sizing: border-box;
 }

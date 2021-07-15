@@ -1,4 +1,4 @@
-.join {
+.inputs {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 
-.join_form {
+.form {
   border: solid 1px rgba($color: white, $alpha: 0.5);
   border-radius: 20px;
   width: 50vw;
@@ -17,7 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  .join_form--content {
+  .form_content {
     margin-bottom: 10px;
     width: 100%;
     display: flex;
@@ -43,7 +43,7 @@
       }
     }
   }
-  .join_form--submit {
+  .form_submit {
     border: none;
     background-color: $blue;
     width: 40%;
@@ -58,7 +58,10 @@
       transition: background-color 0.1s ease-in;
     }
   }
-  .join_form--already {
+  .form_already,
+  .form_password,
+  .form_noaccount,
+  .form_github {
     a {
       color: #4d7db7;
       &:hover {

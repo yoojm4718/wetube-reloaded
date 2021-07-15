@@ -1,34 +1,33 @@
 extends base
 
 block content
-    h1 #{pageTitle}
-    div.join
+    div.inputs
         div.error
             if errorMessage
                 span=errorMessage
-        form(method="POST", enctype="multipart/form-data").join_form
-            div.join_form--content
+        form(method="POST", enctype="multipart/form-data").form
+            div.form_content
                 label(for="avatar", id="avatar") Avatar
                 input(name="avatar", type="file", accept="image/*")
-            div.join_form--content
+            div.form_content
                 label(for="name", id="name") Name
                 input(name="name", type="text", placeholder="Name", required)
-            div.join_form--content
+            div.form_content
                 label(for="email", id="email") Email
                 input(name="email", type="email", placeholder="Email", required)
-            div.join_form--content
+            div.form_content
                 label(for="username", id="username") Username
                 input(name="username", type="text", placeholder="Username", required)
-            div.join_form--content
+            div.form_content
                 label(for="password", id="password") Password
                 input(name="password", type="password", placeholder="Password", required)
-            div.join_form--content
+            div.form_content
                 label(for="password_confirm", id="password_confirm") Confirm Pasword
                 input(name="password_confirm", type="password", placeholder="Confirm Password", required)
-            div.join_form--content
+            div.form_content
                 label(for="location", id="location") Location
                 input(name="location", type="text", placeholder="Location", required)
-            input(type="submit", value="Join").join_form--submit
-            div.join_form--already
+            input(type="submit", value="Join").form_submit
+            div.form_already
                 span Already have an account? 
                 a(href="/login") Log In Now &rarr;

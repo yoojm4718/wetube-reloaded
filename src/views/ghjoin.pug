@@ -1,38 +1,33 @@
 extends base
 
 block content
-    h1 #{pageTitle} 
-    div.join
+    div.inputs
         div.error
             if errorMessage
                 span=errorMessage
-        form(method="POST", enctype="multipart/form-data").join_form
-            div.join_form--content
+        form(method="POST", enctype="multipart/form-data").form
+            div.form_content
                 label(for="avatar", id="avatar") Avatar
                 img(src=`${user.avatar}`, width="100px")
                 input(name="avatar", type="file", value=`${user.avatar}`, accept="image/*")
-            div.join_form--content
+            div.form_content
                 label(for="name", id="name") Name
                 input(name="name", type="text", placeholder="Name", required, value=`${user.name}`)
-            div.join_form--content
+            div.form_content
                 label(for="email", id="email") Email
                 input(name="email", type="email", placeholder="Email", required, value=`${user.email}`)
-            div.join_form--content
+            div.form_content
                 label(for="username", id="username") Username
                 input(name="username", type="text", placeholder="Username", required, value=`${user.username}`)
-            div.join_form--content
+            div.form_content
                 label(for="password", id="password") Password
                 input(name="password", type="password", placeholder="Password", required)
-            div.join_form--content
+            div.form_content
                 label(for="password_confirm", id="password_confirm") Confirm Pasword
                 input(name="password_confirm", type="password", placeholder="Confirm Password", required)
-            div.join_form--content
+            div.form_content
                 label(for="location", id="location") Location
                 input(name="location", type="text", placeholder="Location", required, value=`${user.location}`)
             input(name="id", type="text", required, value=`${user._id}`, hidden)
             input(name="avatarValue", type="text", required, value=`${user.avatar}`, hidden)
-            input(type="submit", value="Join")
-    hr
-    div 
-        span Already have an account? 
-        a(href="/login") Log In Now &rarr;
+            input(type="submit", value="Join").form_submit

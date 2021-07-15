@@ -1,19 +1,30 @@
 extends base
 
 block content
-    if errorMessage
-        span=errorMessage
-    form(method="POST", enctype="multipart/form-data")
-        label(for="avatar", id="avatar") Avatar
-        if doesFileExist
-            img(src="/" + loggedInUser.avatar, width="100px")
-        else
-            img(src=loggedInUser.avatar, width="100px")
-        input(name="avatar", type="file", value=loggedInUser.avatar, accept="image/*")
-        input(name="name", type="text", placeholder="Name", required, value=loggedInUser.name)
-        input(name="email", type="email", placeholder="Email", required, value=loggedInUser.email)
-        input(name="username", type="text", placeholder="Username", required, value=loggedInUser.username)
-        input(name="location", type="text", placeholder="Location", required, value=loggedInUser.location)
-        input(type="submit", value="Update Profile")
-        hr
-        a(href="edit/password") Change Password &rarr;
+    div.inputs
+        div.error
+            if errorMessage
+                span=errorMessage
+        form(method="POST", enctype="multipart/form-data").form
+            div.form_content
+                label(for="avatar", id="avatar") Avatar
+                if doesFileExist
+                    img(src="/" + loggedInUser.avatar, width="100px")
+                else
+                    img(src=loggedInUser.avatar, width="100px")
+                input(name="avatar", type="file", value=loggedInUser.avatar, accept="image/*")
+            div.form_content
+                label(for="name", id="name") Name
+                input(name="name", type="text", placeholder="Name", required, value=loggedInUser.name)
+            div.form_content
+                label(for="email", id="email") Email
+                input(name="email", type="email", placeholder="Email", required, value=loggedInUser.email)
+            div.form_content
+                label(for="username", id="username") Username
+                input(name="username", type="text", placeholder="Username", required, value=loggedInUser.username)
+            div.form_content
+                label(for="location", id="location") Location
+                input(name="location", type="text", placeholder="Location", required, value=loggedInUser.location)
+            input(type="submit", value="Update Profile").form_submit
+            div.form_password
+                a(href="edit/password") Change Password &rarr;
