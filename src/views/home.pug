@@ -2,7 +2,7 @@ extends base
 include mixins/video
 
 block content
-    ul
+    ul.videos
         each video in videos 
             +video(video)
         else 

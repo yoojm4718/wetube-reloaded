@@ -1,10 +1,13 @@
 mixin video(video)
-    div
-        h4
-            a(href=`/videos/${video.id}`)=video.title
-        p=video.description
-        ul
-            each hashtag in video.hashtags
-                li=hashtag
-        small=video.createdAt
-        hr 
+    a(href=`/videos/${video.id}`).video
+        img(src="https://s29843.pcdn.co/blog/wp-content/uploads/sites/2/2019/06/YouTube-Thumbnail-Sizes.png").video_thumbnail
+        div.video_details
+            if fs.existsSync(video.owner.avatar)
+                img(src="/" + video.owner.avatar, width="100px").video_details--owner
+            else
+                img(src=video.owner.avatar, width="100px").video_details--owner
+            div.video_details--text
+                h4=video.title
+                span #{video.meta.views} Views
+                small Created #{video.createdAt.getFullYear()}.#{video.createdAt.getMonth()}..#{video.createdAt.getDate()}
+            
