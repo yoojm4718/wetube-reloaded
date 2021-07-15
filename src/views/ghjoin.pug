@@ -1,21 +1,37 @@
 extends base
 
 block content
-    if errorMessage
-        span=errorMessage
-    form(method="POST", enctype="multipart/form-data")
-        label(for="avatar", id="avatar") Avatar
-        img(src=`${user.avatar}`, width="100px")
-        input(name="avatar", type="file", value=`${user.avatar}`, accept="image/*")
-        input(name="name", type="text", placeholder="Name", required, value=`${user.name}`)
-        input(name="email", type="email", placeholder="Email", required, value=`${user.email}`)
-        input(name="username", type="text", placeholder="Username", required, value=`${user.username}`)
-        input(name="password", type="password", placeholder="Password", required)
-        input(name="password_confirm", type="password", placeholder="Confirm Password", required)
-        input(name="location", type="text", placeholder="Location", required, value=`${user.location}`)
-        input(name="id", type="text", required, value=`${user._id}`, hidden)
-        input(name="avatarValue", type="text", required, value=`${user.avatar}`, hidden)
-        input(type="submit", value="Join")
+    h1 #{pageTitle} 
+    div.join
+        div.error
+            if errorMessage
+                span=errorMessage
+        form(method="POST", enctype="multipart/form-data").join_form
+            div.join_form--content
+                label(for="avatar", id="avatar") Avatar
+                img(src=`${user.avatar}`, width="100px")
+                input(name="avatar", type="file", value=`${user.avatar}`, accept="image/*")
+            div.join_form--content
+                label(for="name", id="name") Name
+                input(name="name", type="text", placeholder="Name", required, value=`${user.name}`)
+            div.join_form--content
+                label(for="email", id="email") Email
+                input(name="email", type="email", placeholder="Email", required, value=`${user.email}`)
+            div.join_form--content
+                label(for="username", id="username") Username
+                input(name="username", type="text", placeholder="Username", required, value=`${user.username}`)
+            div.join_form--content
+                label(for="password", id="password") Password
+                input(name="password", type="password", placeholder="Password", required)
+            div.join_form--content
+                label(for="password_confirm", id="password_confirm") Confirm Pasword
+                input(name="password_confirm", type="password", placeholder="Confirm Password", required)
+            div.join_form--content
+                label(for="location", id="location") Location
+                input(name="location", type="text", placeholder="Location", required, value=`${user.location}`)
+            input(name="id", type="text", required, value=`${user._id}`, hidden)
+            input(name="avatarValue", type="text", required, value=`${user.avatar}`, hidden)
+            input(type="submit", value="Join")
     hr
     div 
         span Already have an account? 

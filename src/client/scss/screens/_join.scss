@@ -1,0 +1,69 @@
+.join {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: max-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.join_form {
+  border: solid 1px rgba($color: white, $alpha: 0.5);
+  border-radius: 20px;
+  width: 50vw;
+  padding: 40px 40px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .join_form--content {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-bottom: 5px;
+      font-size: 20px;
+    }
+    input {
+      border: none;
+      background-color: transparent;
+      width: 60%;
+      height: 40px;
+      border-radius: 2px;
+      font-size: 15px;
+      color: rgba($color: white, $alpha: 0.5);
+      padding: 0 5px;
+      border-bottom: solid 0.1px rgba($color: white, $alpha: 0.1);
+      &:focus {
+        outline: none;
+        border-bottom: solid 3px $blue;
+        transition: border-bottom 0.1s ease-in;
+      }
+    }
+  }
+  .join_form--submit {
+    border: none;
+    background-color: $blue;
+    width: 40%;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: white;
+    margin-bottom: 20px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($color: $blue, $alpha: 0.5);
+      transition: background-color 0.1s ease-in;
+    }
+  }
+  .join_form--already {
+    a {
+      color: #4d7db7;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
