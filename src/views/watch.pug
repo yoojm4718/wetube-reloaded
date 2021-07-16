@@ -1,17 +1,23 @@
 extends base
 include mixins/video
 
-block content
-    video(src="/" + video.fileUrl, controls, width="300px")
-    div
-        p=video.description
-        small=video.createdAt
-    div 
-        small Uploaded by 
-            a(href=`/users/${video.owner._id}`)=video.owner.name
-    br
-    if loggedInUser
-        if String(video.owner._id) === String(loggedInUser._id)
-            a(href=`${video.id}/edit`) Edit Video &rarr;
-            br
-            a(href=`${video.id}/delete`) Delete Video &rarr;
+block content 
+    .watch 
+        video(src="/" + video.fileUrl, controls)
+    .watch_about 
+        .watch_owner 
+            if fs.existsSync(video.owner.avatar)
+                img(src="/" + video.owner.avatar, width="100px").video_details--owner
+            else
+                img(src=video.owner.avatar, width="100px").video_details--owner
+        .watch_detail
+            h3=video.title
+            small Created #{video.createdAt.getFullYear()}.#{video.createdAt.getMonth()}.#{video.createdAt.getDate()} / Uploaded by 
+                a(href=`/users/${video.owner._id}`)=video.owner.name
+    .watch_description
+        div
+            p=video.description
+            if loggedInUser
+                if String(video.owner._id) === String(loggedInUser._id)
+                    a(href=`${video.id}/edit`) Edit Video &rarr;
+                    a(href=`${video.id}/delete`) Delete Video &rarr;
