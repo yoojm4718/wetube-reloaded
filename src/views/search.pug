@@ -10,4 +10,4 @@ block content
     div.search_res
         ul.videos
             each video in videos 
-                +video(video)
+                +video(video,video.owner.avatar)

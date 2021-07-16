@@ -1,11 +1,11 @@
-mixin video(video)
+mixin video(video, avatar)
     a(href=`/videos/${video.id}`).video
         img(src="https://s29843.pcdn.co/blog/wp-content/uploads/sites/2/2019/06/YouTube-Thumbnail-Sizes.png").video_thumbnail
         div.video_details
-            if fs.existsSync(video.owner.avatar)
-                img(src="/" + video.owner.avatar, width="100px").video_details--owner
+            if fs.existsSync(avatar)
+                img(src="/" + avatar, width="100px").video_details--owner
             else
-                img(src=video.owner.avatar, width="100px").video_details--owner
+                img(src=avatar, width="100px").video_details--owner
             div.video_details--text
                 h4=video.title
                 span #{video.meta.views} Views

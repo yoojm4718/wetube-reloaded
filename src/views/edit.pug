@@ -2,9 +2,18 @@ extends base
 
 
 block content
-    h5 Edit Video
-    form(method="POST")
-        input(name="title" value=video.title required type="text" placeholder="Video Title" max-length=30)
-        input(name="description" value=video.description required type="text" placeholder="Description" min-length=20)
-        input(name="hashtags" value=video.hashtags.join() required type="text" placeholder="Hashtags, seperated by comma")
-        input(value="save" type="submit")
+    div.inputs
+        if errorMessage
+            div.error
+                span=errorMessage
+        form(method="POST").form
+            div.form_content
+                label(for="title", id="title") Title
+                input(name="title" value=video.title required type="text" placeholder="Video Title" max-length=30)
+            div.form_content
+                label(for="description", id="description") Description
+                input(name="description" value=video.description required type="text" placeholder="Description")
+            div.form_content
+                label(for="hashtags", id="hashtags") Hashtags
+                input(name="hashtags" value=video.hashtags.join() required type="text" placeholder="Hashtags, seperated by comma")
+            input(value="Save" type="submit").form_submit

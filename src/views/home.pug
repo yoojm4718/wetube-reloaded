@@ -4,6 +4,6 @@ include mixins/video
 block content
     ul.videos
         each video in videos 
-            +video(video)
+            +video(video, video.owner.avatar)
         else 
             li No Videos Found

@@ -2,8 +2,8 @@ extends base
 include mixins/video
 
 block content
-    ul
-        each video in user.videos 
-            +video(video)
+    ul.videos
+        each video in user.videos
+            +video(video, user.avatar)
         else 
             li No Videos Found
