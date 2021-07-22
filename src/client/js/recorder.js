@@ -2,24 +2,34 @@ const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
 let stream;
+let recorder;
 
 const handleStart = () => {
   startBtn.innerText = "Stop Recording";
   startBtn.removeEventListener("click", handleStart);
   startBtn.addEventListener("click", handleStop);
 
-  const recorder = new MediaRecorder(stream);
-  recorder.ondataavailable = (event) => {}; //this will listen to the event 'dataavailable'
+  recorder = new MediaRecorder(stream);
+  recorder.ondataavailable = (event) => {
+    const videoFile = URL.createObjectURL(event.data); //Important! this objectURL is the URL that only the "browser memory" is pointing.
+    //so this url is not in the server, only accessable in that browser.
+    //It is easy to understand that it is just a url that points the recorded file
+    video.srcObject = null;
+    video.src = videoFile;
+    video.loop = true;
+    video.play();
+  };
   recorder.start();
-  setTimeout(() => {
-    recorder.stop(); //after this method, the event 'dataavailable' will be fired
-  }, 10000);
 };
 
+handleDownload;
+
 const handleStop = () => {
-  startBtn.innerText = "Start Recording";
+  startBtn.innerText = "Download Recording";
   startBtn.removeEventListener("click", handleStop);
-  startBtn.addEventListener("click", handleStart);
+  startBtn.addEventListener("click", handleDownload);
+
+  recorder.stop();
 };
 
 const init = async () => {
