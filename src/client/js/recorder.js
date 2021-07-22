@@ -1,10 +1,19 @@
 const startBtn = document.getElementById("startBtn");
 const video = document.getElementById("preview");
 
+let stream;
+
 const handleStart = () => {
   startBtn.innerText = "Stop Recording";
   startBtn.removeEventListener("click", handleStart);
   startBtn.addEventListener("click", handleStop);
+
+  const recorder = new MediaRecorder(stream);
+  recorder.ondataavailable = (event) => {}; //this will listen to the event 'dataavailable'
+  recorder.start();
+  setTimeout(() => {
+    recorder.stop(); //after this method, the event 'dataavailable' will be fired
+  }, 10000);
 };
 
 const handleStop = () => {
@@ -15,7 +24,7 @@ const handleStop = () => {
 
 const init = async () => {
   //to use async and await in frontend JS, we need to install regeneratorRuntime
-  const stream = await navigator.mediaDevices.getUserMedia({
+  stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
     video: true,
   });
