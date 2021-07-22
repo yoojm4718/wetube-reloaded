@@ -3,15 +3,16 @@ const video = document.getElementById("preview");
 
 let stream;
 let recorder;
+let videoFile;
 
 const handleStart = () => {
   startBtn.innerText = "Stop Recording";
   startBtn.removeEventListener("click", handleStart);
   startBtn.addEventListener("click", handleStop);
 
-  recorder = new MediaRecorder(stream);
+  recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   recorder.ondataavailable = (event) => {
-    const videoFile = URL.createObjectURL(event.data); //Important! this objectURL is the URL that only the "browser memory" is pointing.
+    videoFile = URL.createObjectURL(event.data); //Important! this objectURL is the URL that only the "browser memory" is pointing.
     //so this url is not in the server, only accessable in that browser.
     //It is easy to understand that it is just a url that points the recorded file
     video.srcObject = null;
@@ -22,7 +23,13 @@ const handleStart = () => {
   recorder.start();
 };
 
-handleDownload;
+const handleDownload = () => {
+  const a = document.createElement("a");
+  a.href = videoFile;
+  a.download = "MyRecording.webm"; //this attribute of anchor will save the linked URL instead of navigating to it.
+  document.body.appendChild(a);
+  a.click(); //fake click
+};
 
 const handleStop = () => {
   startBtn.innerText = "Download Recording";
