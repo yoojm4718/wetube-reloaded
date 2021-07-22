@@ -10,6 +10,7 @@ block content
             div.form_content
                 label(for="video") Video File 
                 input(type="file", accept="video/*", required, id="video", name="video")
+                button#startBtn.form_submit Start Recording
             div.form_content
                 label(for="title") Video Title (Maximum Length : 30 letters)
                 input(name="title" required type="text" placeholder="Video Title" max-length=30)
@@ -20,3 +21,6 @@ block content
                 label(for="hashtags") Hashtags (Seperated By Comma)
                 input(name="hashtags" required type="text" placeholder="Hashtags, seperated by comma")
             input(value="Upload Video" type="submit").form_submit
+
+block scripts 
+    script(src="/assets/js/recorder.js") 
