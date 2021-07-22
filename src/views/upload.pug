@@ -10,6 +10,7 @@ block content
             div.form_content
                 label(for="video") Video File 
                 input(type="file", accept="video/*", required, id="video", name="video")
+                video#preview
                 button#startBtn.form_submit Start Recording
             div.form_content
                 label(for="title") Video Title (Maximum Length : 30 letters)
