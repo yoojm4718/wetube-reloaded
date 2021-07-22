@@ -5,17 +5,18 @@ block content
     .watch 
         video(src="/" + video.fileUrl)
         div#videoControls
-            button#play Play
-            button#mute Mute
-            input(type="range", step="0.1", value=0.5, min="0", max="1")#volume
-            div 
-                span#currentTime 00:00:00
-                span  / 
-                span#totalTime 00:00:00
-            div 
-                input(type="range", step="1", value=0, min="0")#timeline
-            div 
-                button#fullscreen Enter Full Screen
+            i.fas.fa-play#play
+            #volume-container
+                i.fas.fa-volume-up#mute
+                input(type="range", step="0.1", value=0.5, min="0", max="1")#volume
+            #timeline-container
+                div 
+                    span#currentTime 00:00:00
+                    span  / 
+                    span#totalTime 00:00:00
+                div 
+                    input(type="range", step="1", value=0, min="0")#timeline
+            i.fas.fa-expand#fullscreen
     .watch_about 
         .watch_owner 
             if fs.existsSync(video.owner.avatar)
