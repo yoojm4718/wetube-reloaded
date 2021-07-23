@@ -1,6 +1,9 @@
 extends base
+include mixins/message
 
 block content
+    if messages.error
+        +message("error", messages.error)
     div.inputs
         if errorMessage
             div.error
