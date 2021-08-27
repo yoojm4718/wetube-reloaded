@@ -27,7 +27,7 @@ export const postJoin = async (req, res) => {
   }
   try {
     await User.create({
-      avatar: file ? file.path : null,
+      avatar: file ? (res.locals.isHeroku ? file.location : file.path) : null,
       name,
       username,
       email,
@@ -242,7 +242,7 @@ export const postEdit = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatar: file ? file.path : avatar,
+      avatar: file ? (res.locals.isHeroku ? file.location : file.path) : avatar,
       name,
       email,
       username,
