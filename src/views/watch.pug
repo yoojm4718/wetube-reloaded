@@ -20,7 +20,7 @@ block content
     .watch_about 
         .watch_owner 
             if fs.existsSync(video.owner.avatar)
-                img(src="/" + video.owner.avatar, width="100px").video_details--owner
+                img(src=staticURL + video.owner.avatar, width="100px").video_details--owner
             else
                 img(src=video.owner.avatar, width="100px").video_details--owner
         .watch_detail

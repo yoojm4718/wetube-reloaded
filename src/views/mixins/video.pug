@@ -3,7 +3,7 @@ mixin video(video, avatar)
         img(src="https://s29843.pcdn.co/blog/wp-content/uploads/sites/2/2019/06/YouTube-Thumbnail-Sizes.png").video_thumbnail
         div.video_details
             if fs.existsSync(avatar)
-                img(src="/" + avatar, width="100px").video_details--owner
+                img(src=staticURL + avatar, width="100px").video_details--owner
             else
                 img(src=avatar, width="100px").video_details--owner
             div.video_details--text

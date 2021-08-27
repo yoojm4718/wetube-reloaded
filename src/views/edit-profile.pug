@@ -9,7 +9,7 @@ block content
             div.form_content
                 label(for="avatar", id="avatar") Avatar
                 if doesFileExist
-                    img(src="/" + loggedInUser.avatar, width="100px")
+                    img(src=staticURL + loggedInUser.avatar, width="100px")
                 else
                     img(src=loggedInUser.avatar, width="100px")
                 input(name="avatar", type="file", value=loggedInUser.avatar, accept="image/*")
