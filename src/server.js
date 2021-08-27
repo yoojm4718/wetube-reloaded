@@ -16,6 +16,8 @@ app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // middleware that makes stringified JSON into JSON in req.body (does JSON.parse())
+// app.use(express.text()); -> middleware that makes text into real text in req.body
 
 app.use(
   session({

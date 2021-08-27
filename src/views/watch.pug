@@ -25,7 +25,7 @@ block content
                 img(src=video.owner.avatar, width="100px").video_details--owner
         .watch_detail
             h3=video.title
-            small Created #{video.createdAt.getFullYear()}.#{video.createdAt.getMonth()}.#{video.createdAt.getDate()} / Uploaded by 
+            small Created #{video.createdAt.getFullYear()}.#{video.createdAt.getMonth() + 1}.#{video.createdAt.getDate()} / Uploaded by 
                 a(href=`/users/${video.owner._id}`)=video.owner.name
     .watch_description
         div
@@ -34,7 +34,23 @@ block content
                 if String(video.owner._id) === String(loggedInUser._id)
                     a(href=`${video.id}/edit`) Edit Video &rarr;
                     a(href=`${video.id}/delete`) Delete Video &rarr;
+    if loggedIn
+        .watch_add-comments 
+            form.watch__comment-form#commentForm
+                textarea(cols="30", rows="10", placeholder="Write a nice comment...")
+                button Add Comment
+    .watch_comments 
+        ul 
+            each comment in video.comments.reverse()
+                li.watch_comment(data-id=comment._id)
+                    .watch_comment-content
+                        i.fas.fa-comment
+                        span=comment.content
+                    if loggedInUser
+                        if String(comment.owner) === String(loggedInUser._id)
+                            button.comment_delete ❌
 
 block scripts 
     script(src="/assets/js/videoPlayer.js") 
-    
+    if loggedIn
+        script(src="/assets/js/commentSection.js") 

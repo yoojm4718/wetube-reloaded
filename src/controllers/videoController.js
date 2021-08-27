@@ -1,7 +1,9 @@
 import Video from "../models/Video";
 import User from "../models/User";
+import Comment from "../models/Comment";
 import fs from "fs";
 import { SSL_OP_NO_TLSv1_1 } from "constants";
+import { async } from "regenerator-runtime";
 
 export const home = async (req, res) => {
   try {
@@ -16,7 +18,7 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner");
+  const video = await Video.findById(id).populate("owner").populate("comments");
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video Not Found" });
   }
@@ -127,5 +129,46 @@ export const registerView = async (req, res) => {
   }
   video.meta.views = video.meta.views + 1;
   await video.save();
+  return res.sendStatus(200);
+};
+
+export const createComment = async (req, res) => {
+  const {
+    body: { content },
+    session: { user },
+    params: { id },
+  } = req;
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  const comment = await Comment.create({ content, owner: user._id, video: id });
+  video.comments.push(comment._id);
+  video.save();
+  return res.status(201).json({ newCommentId: comment._id }); // sending message back to front-end ********
+};
+
+export const deleteComment = async (req, res) => {
+  const {
+    session: {
+      user: { _id },
+    },
+    params: { id },
+  } = req;
+  const commentId = req.body.id;
+  const video = await Video.findById(id);
+  if (!video) {
+    return res.sendStatus(404);
+  }
+  const comment = await Comment.findById(commentId);
+  if (String(comment.owner) !== String(_id)) {
+    return res.sendStatus(403);
+  }
+  await Comment.findByIdAndDelete(commentId);
+  const index = video.comments.indexOf(commentId);
+  if (index > -1) {
+    video.comments.splice(index, 1);
+    video.save();
+  }
   return res.sendStatus(200);
 };
