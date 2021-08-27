@@ -3,6 +3,8 @@ import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 import fs from "fs";
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 export const getJoin = (req, res) => {
   return res.render("join", { pageTitle: "Create Account" });
 };
@@ -27,7 +29,7 @@ export const postJoin = async (req, res) => {
   }
   try {
     await User.create({
-      avatar: file ? (res.locals.isHeroku ? file.location : file.path) : null,
+      avatar: file ? (isHeroku ? file.location : file.path) : null,
       name,
       username,
       email,
@@ -242,7 +244,7 @@ export const postEdit = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatar: file ? (res.locals.isHeroku ? file.location : file.path) : avatar,
+      avatar: file ? (isHeroku ? file.location : file.path) : avatar,
       name,
       email,
       username,

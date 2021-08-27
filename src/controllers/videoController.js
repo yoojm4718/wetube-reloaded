@@ -5,6 +5,8 @@ import fs from "fs";
 import { SSL_OP_NO_TLSv1_1 } from "constants";
 import { async } from "regenerator-runtime";
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({})
@@ -71,7 +73,7 @@ export const postUpload = async (req, res) => {
     const newVideo = await Video.create({
       title,
       description,
-      fileUrl: res.locals.isHeroku ? file.location : file.path.fileUrl,
+      fileUrl: isHeroku ? file.location : file.path.fileUrl,
       owner: _id,
       createdAt: Date.now(),
       hashtags: Video.formatHashtags(hashtags),

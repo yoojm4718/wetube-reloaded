@@ -15,9 +15,7 @@ export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.loggedInUser = req.session.user;
   res.locals.siteName = "Wetube";
-  res.locals.staticURL = isHeroku
-    ? "https://wetube-yoojm4718.s3.us-east-2.amazonaws.com/"
-    : "/";
+  res.locals.staticURL = isHeroku ? "" : "/";
   next();
 };
 
