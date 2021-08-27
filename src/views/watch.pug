@@ -19,7 +19,7 @@ block content
             i.fas.fa-expand#fullscreen
     .watch_about 
         .watch_owner 
-            if fs.existsSync(video.owner.avatar)
+            if fs.existsSync(video.owner.avatar) || isHeroku
                 img(src=staticURL + video.owner.avatar, width="100px").video_details--owner
             else
                 img(src=video.owner.avatar, width="100px").video_details--owner

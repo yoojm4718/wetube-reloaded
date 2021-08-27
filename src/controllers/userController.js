@@ -214,7 +214,7 @@ export const logout = (req, res) => {
 
 export const getEdit = (req, res) => {
   let doesFileExist = true;
-  if (!fs.existsSync(req.session.user.avatar)) {
+  if (!fs.existsSync(req.session.user.avatar) || !res.locals.isHeroku) {
     doesFileExist = false;
   }
   res.render("edit-profile", { pageTitle: "Edit Profile", doesFileExist });
